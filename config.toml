@@ -1,0 +1,68 @@
+# Athens configuration files.
+#
+# See /usr/share/doc/athens/examples/config.dev.toml and https://docs.gomods.io
+# for a full list of configuration properties and their documentation
+
+
+# supported values are: 'development' and 'production'
+GoEnv = "production"
+
+# use go as go binary
+# although this property defaults to "go", Athens complains if it isn't specified explicitly
+GoBinary = "go"
+
+# no pprof endpoints exposed
+EnablePprof = false
+
+# allow max 10 parallel "git clones"
+GoGetWorkers = 10
+
+# allow max 30 concurrent requests
+ProtocolWorkers = 30
+
+# use 300 seconds timeout for external network calls
+# although this property defaults to 300, Athens complains if it isn't specified explicitly
+Timeout = 300
+
+# don't log "debug" and "trace" messages
+LogLevel = "info"
+
+
+# listen on localhost at port 3000
+Port = "127.0.0.1:3000"
+
+
+# modules direct access
+GoBinaryEnvVars = ["GOPROXY=direct"]
+
+# use separate download-mode hcl file
+DownloadMode = "file:/etc/athens/download-mode.hcl"
+
+
+# although this property defaults to "none", Athens complains if it isn't specified explicitly
+CloudRuntime = "none"
+
+
+# use google SumDB
+SumDBs = ["https://sum.golang.org"]
+
+# put your private modules here.
+# e.g. NoSumPatterns = ["github.com/<your-name>/<your-private-repo>","<your-server>/<your-private-module>"]
+NoSumPatterns = []
+
+
+# no index
+IndexType = "none"
+
+
+# use only one instance of Athens to manage concurrency
+SingleFlightType = "memory"
+
+
+# use disk storage backend
+StorageType = "disk"
+
+[Storage]
+	[Storage.Disk]
+  	#	use Athens cache directory
+		RootPath = "/var/cache/athens"

@@ -1,0 +1,7 @@
+# http to ssh rewrite rule
+
+# [url "ssh://git@git.example.com:7999"]
+# 	insteadOf = https://git.example.com/scm
+
+# [url "ssh://git@github.com/<your-name>/<your-private-repo>"]
+# 	insteadOf = https://github.com/<your-name>/<your-private-repo>

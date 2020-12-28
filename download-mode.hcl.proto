@@ -1,0 +1,56 @@
+# The default behavior for all modules. This behavior is overridden
+# for select module groups below. In this case, the default behavior is:
+# 1. Immediatley redirect all requests to https://proxy.golang.org
+# 2. In the background, download the module from the version control system (VCS) and store it
+
+downloadURL = "https://proxy.golang.org"
+
+mode = "async_redirect"
+
+
+# Any module matching github.com/gomods/* (such as github.com/gomods/athens)
+# will be downloaded from GitHub, stored, and then returned to the user.
+download "github.com/gomods/*" {
+    mode = "sync"
+}
+
+
+# Any module matching golang.org/x/* (such as golang.org/x/text)
+# will always return a HTTP 404 response code. This behavior ensures
+# that Athens will never store or serve any module names starting with golang.org/x.
+#
+# If a user has their GOPROXY environment variable set with a comma separated list,
+# their go command line tool will always try the option next in the list.
+# For example, if a user has their GOPROXY environment variable set to
+# https://athens.azurefd.net,direct, and then runs go get golang.org/x/text,
+# they will still download golang.org/x/text to their machine.
+# The module just won’t come from Athens.
+download "golang.org/x/*" {
+    mode = "none"
+}
+
+
+# Any module matching github.com/pkg/* (such as github.com/pkg/errors)
+# will always redirect the go tool to https://gocenter.io.
+# In this case, Athens will never persist the given module to its storage.
+download "github.com/pkg/*" {
+    mode = "redirect"
+    downloadURL = "https://gocenter.io"
+}
+
+# If you’re running Athens to serve a team of Go developers,
+# it might be useful to ensure that the team doesn’t use a specific group or groups of modules
+# (for example, because of licensing or security issues).
+download "bad/module/repo/*" {
+    mode = "none"
+}
+
+# If you are running Athens using a storage backend that has limited space,
+# you may want to prevent Athens from storing certain groups of modules that take up a lot of space.
+# To avoid exhausting Athens storage, while still ensuring that the users
+# of your Athens server still get access to the modules you can’t store,
+# you would use a redirect directive, as shown below:
+download "very/large/*" {
+    mode = "redirect"
+    url = "https://reliable.proxy.com"
+}

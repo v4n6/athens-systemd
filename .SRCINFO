@@ -1,0 +1,31 @@
+pkgbase = athens
+	pkgdesc = proxy server for the Go Modules download API run by systemd
+	pkgver = 0.10.0
+	pkgrel = 1
+	url = https://docs.gomods.io
+	install = .install
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	depends = glibc
+	depends = go
+	backup = etc/athens/config.toml
+	backup = etc/athens/download-mode.hcl
+	backup = var/lib/athens/.gitconfig
+	source = athens-0.10.0.tar.gz::https://github.com/gomods/athens/archive/v0.10.0.tar.gz
+	source = athens.service
+	source = athens.conf
+	source = config.toml
+	source = download-mode.hcl
+	source = download-mode.hcl.proto
+	source = .gitconfig
+	sha512sums = f105959eeb07ecb16c50956dc12f47813117814e3ce097394618d2f4b83f04bbb71cb3884639984960566d46170e111631623b7282810eaddebbac86625760f1
+	sha512sums = 623b53c297867ac708183070effb8014bb409b65f136bd91075b2cccd18bbfb95eb197b108e023b585125326d1a39879d877c98e78622c828872094fb6ff6fe4
+	sha512sums = 8b0a1c847e36fd7bfce627c4446ba12495fa32ca5a308904bbbd4ce28826be7e065b7b32ad6f44155441366edf8cec6d1b189f65de486197a791dc4a818f1ec1
+	sha512sums = 535620641158ead46207d2c873f36f47932eed524db0e28868aed28450d0f6da25b695cbe7a11a09775db164b303625dc06a530d4638a5c335fe0dd76d1152bd
+	sha512sums = 3eeedb58ca246d54d36292c900cfefb0a14773a14f902a49c685794b05d882f54e3ae079e63eea364c4acf894e20aa9e4c6cac663a7a5456706e014e7506bd64
+	sha512sums = e9469e223020df0ab143d0c2b15370c6f591e98c93200d16b23a60deb6766b11fa7a6772d31516e347d0aa2d10db152343408852844c1a087d4161f1dc759f38
+	sha512sums = e8b5263a4e531e6dff32dd5abfea059cfdf9cb507bfc3698a7793099269b0bd6b60ba228974910b1f1198196baa1181025c69530195c635cfb4a602207c47d0f
+
+pkgname = athens
+

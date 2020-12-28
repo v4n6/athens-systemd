@@ -1,0 +1,35 @@
+[Unit]
+Description=Athens proxy server
+Requires=network.target
+After=network.target
+
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/athens -config_file /etc/athens/config.toml
+
+NoNewPrivileges=true
+
+User=athens
+Group=athens
+
+# create cache directory if it doesn't exists
+CacheDirectory=athens
+CacheDirectoryMode=0700
+
+ProtectSystem=full
+ProtectHome=true
+ProtectProc=invisible
+PrivateDevices=true
+PrivateTmp=true
+
+
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+
+
+[Install]
+WantedBy=multi-user.target
