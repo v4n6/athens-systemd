@@ -1,5 +1,5 @@
 [Unit]
-Description=Athens proxy server
+Description=Athens proxy server for Go modules
 Requires=network.target
 After=network.target
 
@@ -13,7 +13,7 @@ NoNewPrivileges=true
 User=athens
 Group=athens
 
-# create cache directory if it doesn't exists
+# create cache directory if it doesn't exist
 CacheDirectory=athens
 CacheDirectoryMode=0700
 

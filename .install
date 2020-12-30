@@ -1,6 +1,6 @@
 # -*-sh-*-
 
-# change ownership of Athens home directory and its configuration files
+# change ownership of Athens home directory and its configuration files.
 set_conf_owner() {
 		chown -R athens:athens /var/lib/athens
 		chown -R athens:athens /etc/athens/*
