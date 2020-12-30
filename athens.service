@@ -7,23 +7,36 @@ After=network.target
 [Service]
 Type=exec
 ExecStart=/usr/bin/athens -config_file /etc/athens/config.toml
-
-NoNewPrivileges=true
+ExecReload=/bin/kill -USR1 "$MAINPID"
+KillMode=mixed
+KillSignal=SIGINT
+Restart=on-abnormal
 
 User=athens
 Group=athens
+
 
 # create cache directory if it doesn't exist
 CacheDirectory=athens
 CacheDirectoryMode=0700
 
+
+# limits
+Nice=5
+TimeoutStopSec=5s
+LimitNOFILE=1048576
+LimitNPROC=512
+
+# security constraints
+NoNewPrivileges=true
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
 ProtectSystem=full
 ProtectHome=true
-ProtectProc=invisible
 PrivateDevices=true
 PrivateTmp=true
-
-
+ProtectProc=invisible
 ProtectKernelTunables=true
 ProtectKernelModules=true
 ProtectKernelLogs=true
